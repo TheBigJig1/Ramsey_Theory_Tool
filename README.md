@@ -1,8 +1,9 @@
 # Ramsey Theory Graph Visualizations
 
 This repository contains two Python scripts for interactive graph visualization:
-- [graph.py](graph.py): A script to visualize and interact with graphs.
+- [testingFile.py](graph.py): A script to visualize test features before modifying  the working version.
 - [ramsey.py](ramsey.py): A script focused on Ramsey theory with additional interactive capabilities.
+These scripts were written with the help of github copilot
 
 ## Overview
 
