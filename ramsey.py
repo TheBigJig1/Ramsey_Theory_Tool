@@ -6,8 +6,19 @@ import random
 
 class GraphVisualizer:
     def __init__(self):
-        self.fig, self.ax = plt.subplots(figsize=(10, 8))
-        plt.subplots_adjust(left=0.02, bottom=0.15, right=0.98, top=0.98)
+        # Create figure with a wider layout to accommodate info box
+        self.fig = plt.figure(figsize=(12, 8))
+        
+        # Create left area for info box (left 20% of figure)
+        self.info_ax = self.fig.add_axes([0.02, 0.15, 0.18, 0.83])
+        self.info_ax.axis('off')  # Hide axes for info text area
+        
+        # Create main graph area (right 80% of figure)
+        self.ax = self.fig.add_axes([0.25, 0.15, 0.73, 0.83])
+        
+        # Keep bottom part for controls
+        plt.subplots_adjust(bottom=0.15)
+        
         self.G = nx.Graph()
         self.pos = {}
         self.num_vertices = 5  # Default number of vertices
@@ -79,6 +90,8 @@ class GraphVisualizer:
     
     def draw_graph(self):
         self.ax.clear()
+        self.info_ax.clear()
+        self.info_ax.axis('off')
         self.edge_lines = {}  # Store line objects for edge detection
         
         # Draw edges with their colors
@@ -107,17 +120,17 @@ class GraphVisualizer:
         self.ax.set_xticks([])
         self.ax.set_yticks([])
         
-        # Add status information
-        info_text = (f"Graph Type: {self.graph_type}\n"
-                    f"Vertices: {self.num_vertices}\n"
-                    f"Edges: {self.G.number_of_edges()}\n"
-                    f"Left-click edge: Change color\n"
-                    f"Right-click edge: Toggle bold\n"
-                    f"Shift + Left-click: Remove edge\n"
-                    f"Command + Click vertices: Add edge\n"
+        # Add status information to the left panel
+        info_text = (f"Graph Type: {self.graph_type}\n\n"
+                    f"Vertices: {self.num_vertices}\n\n"
+                    f"Edges: {self.G.number_of_edges()}\n\n"
+                    f"Controls:\n"
+                    f"Left-click edge: Change color\n\n"
+                    f"Right-click edge: Toggle bold\n\n"
+                    f"Shift + Left-click: Remove edge\n\n"
+                    f"Command + Click vertices: Add edge\n\n"
                     f"Option + Click vertex: Move Vertex")
-        self.ax.text(0.02, 0.98, info_text, transform=self.ax.transAxes,
-                   fontsize=10, va='top', ha='left', bbox=dict(facecolor='white', alpha=0.7))
+        self.info_ax.text(0.05, 0.95, info_text, va='top', ha='left', fontsize=11)
         
         self.fig.canvas.draw_idle()
     
