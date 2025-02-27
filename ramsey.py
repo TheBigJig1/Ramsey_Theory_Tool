@@ -29,6 +29,7 @@ class GraphVisualizer:
         self.selected_vertex = None
         self.cmd_pressed = False  # Track if command key is pressed
         self.opt_pressed = False  # Track if option key is pressed
+        self.a_pressed = False    # Track if "a" key is pressed
         self.dragging_vertex = None  # Track which vertex is being dragged
 
         # Initialize controls
@@ -128,14 +129,27 @@ class GraphVisualizer:
                     f"Left-click edge: Change color\n\n"
                     f"Right-click edge: Toggle bold\n\n"
                     f"Shift + Left-click: Remove edge\n\n"
-                    f"Command + Click vertices: Add edge\n\n"
-                    f"Option + Click vertex: Move Vertex")
+                    f"Command + Left-click vertices: Add edge\n\n"
+                    f"a + Left-click graph: Add vertex\n\n"
+                    f"Option + Left-click vertex: Move Vertex")
         self.info_ax.text(0.05, 0.95, info_text, va='top', ha='left', fontsize=11)
         
         self.fig.canvas.draw_idle()
     
     def on_click(self, event):
         if event.inaxes != self.ax:
+            return
+
+        # "a" + click: Add new vertex at cursor position
+        if self.a_pressed and event.button == 1:
+            # Create a new vertex with the next available index
+            new_vertex_id = max(self.G.nodes()) + 1 if self.G.nodes() else 0
+            self.G.add_node(new_vertex_id)
+            self.pos[new_vertex_id] = (event.xdata, event.ydata)
+            self.num_vertices = len(self.G.nodes())
+            # Update the slider value
+            self.vertex_slider.set_val(self.num_vertices)
+            self.draw_graph()
             return
 
         # Option-click vertex dragging
@@ -240,6 +254,8 @@ class GraphVisualizer:
             self.cmd_pressed = True
         elif event.key == 'alt' or event.key == 'option':  # Support both Mac and Windows
             self.opt_pressed = True
+        elif event.key == 'a':
+            self.a_pressed = True
 
     def on_key_release(self, event):
         if event.key == 'cmd' or event.key == 'control':  # Support both Mac and Windows
@@ -251,6 +267,8 @@ class GraphVisualizer:
         elif event.key == 'alt' or event.key == 'option':  # Support both Mac and Windows
             self.opt_pressed = False
             self.dragging_vertex = None
+        elif event.key == 'a':
+            self.a_pressed = False
 
     def on_release(self, event):
         self.dragging_vertex = None
