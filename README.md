@@ -30,7 +30,8 @@ The visualizers allow you to generate graphs, add vertices, and interact with ed
      1. Open Terminal
      2. Navigate to where you downloaded the file: `cd /path/to/downloaded/file`
      3. Make the file executable: `chmod +x RamseyTheory`
-     4. Run the file: `./RamseyTheory`
+     4. To remove apple security flag(if you trust this project): `xattr -d com.apple.quarantine RamseyTheory`
+     5. Run the file: `./RamseyTheory`
    - Linux:
      1. Open Terminal
      2. Navigate to where you downloaded the file: `cd /path/to/downloaded/file`
