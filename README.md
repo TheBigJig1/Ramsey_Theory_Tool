@@ -16,7 +16,32 @@ Both scripts use:
 
 The visualizers allow you to generate graphs, add vertices, and interact with edges (change color, toggle bold, remove edges, create edges, and move vertices).
 
-## Setting Up a Python Environment
+## Running the Application
+
+### Option 1: Standalone Executable (No Python Installation Required)
+
+1. **Download the Executable**
+   - For Windows: Download `RamseyTheory.exe` from the Releases section
+   - For macOS: Download `RamseyTheory` from the Releases section
+   
+2. **Run the Application**
+   - Windows: Double-click on `RamseyTheory.exe`
+   - macOS: 
+     1. Open Terminal
+     2. Navigate to where you downloaded the file: `cd /path/to/downloaded/file`
+     3. Make the file executable: `chmod +x RamseyTheory`
+     4. Run the file: `./RamseyTheory`
+   - Linux:
+     1. Open Terminal
+     2. Navigate to where you downloaded the file: `cd /path/to/downloaded/file`
+     3. Make the file executable: `chmod +x RamseyTheory`
+     4. Run the file: `./RamseyTheory`
+
+3. **Troubleshooting**
+   - Windows: If you get a warning about an unrecognized app, click "More info" then "Run anyway"
+   - macOS: If you get a security warning, go to System Preferences > Security & Privacy and click "Open Anyway"
+
+### Option 2: Setting Up a Python Environment
 
 1. **Install Python**  
    Ensure you have Python 3 installed. You can download it from [python.org](https://www.python.org/downloads/).
@@ -31,3 +56,17 @@ The visualizers allow you to generate graphs, add vertices, and interact with ed
    source venv/bin/activate
    pip install networkx matplotlib numpy
    python ramsey.py
+   ```
+
+## Using the Application
+
+### Controls
+- **Number of Vertices slider**: Adjust the number of vertices in the graph
+- **Generate Graph button**: Create a new graph with the specified number of vertices
+- **Clear button**: Remove all edges from the graph
+- **Left-click on edge**: Change edge color
+- **Right-click on edge**: Toggle bold appearance
+- **Shift + Left-click on edge**: Remove edge
+- **Command/Ctrl + Left-click on two vertices**: Add edge between them
+- **a + Left-click on empty space**: Add a new vertex
+- **Option/Alt + Left-click and drag vertex**: Move vertex to new position
