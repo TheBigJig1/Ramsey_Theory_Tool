@@ -1,5 +1,5 @@
 ('/Users/jaxon/VSCode/Personal/Ramsey_Theory/dist/RamseyTheory',
- False,
+ True,
  False,
  False,
  None,
@@ -5037,8 +5037,8 @@
  [],
  False,
  False,
- 1740679547,
- [('runw',
-   '/Users/jaxon/VSCode/Personal/Ramsey_Theory/.venv/lib/python3.12/site-packages/PyInstaller/bootloader/Darwin-64bit/runw',
+ 1740681343,
+ [('run',
+   '/Users/jaxon/VSCode/Personal/Ramsey_Theory/.venv/lib/python3.12/site-packages/PyInstaller/bootloader/Darwin-64bit/run',
    'EXECUTABLE')],
  '/opt/homebrew/Cellar/python@3.12/3.12.9/Frameworks/Python.framework/Versions/3.12/Python')
