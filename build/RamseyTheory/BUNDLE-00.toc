@@ -1,0 +1,3 @@
+([('RamseyTheory',
+   '/Users/jaxon/VSCode/Personal/Ramsey_Theory/dist/RamseyTheory',
+   'EXECUTABLE')],)
