@@ -147,8 +147,10 @@ class GraphVisualizer:
             self.G.add_node(new_vertex_id)
             self.pos[new_vertex_id] = (event.xdata, event.ydata)
             self.num_vertices = len(self.G.nodes())
-            # Update the slider value
+            # Update the slider value without triggering its callback
+            self.vertex_slider.eventson = False
             self.vertex_slider.set_val(self.num_vertices)
+            self.vertex_slider.eventson = True
             self.draw_graph()
             return
 
@@ -283,7 +285,14 @@ class GraphVisualizer:
             self.draw_graph()
 
     def update_num_vertices(self, val):
-        self.num_vertices = int(val)
+        new_count = int(val)
+        current_count = len(self.G.nodes())
+        
+        # Only recreate the graph if the slider was directly adjusted
+        if new_count != current_count:
+            self.num_vertices = new_count
+            self.create_graph()
+            self.draw_graph()
     
     def generate_new_graph(self, event):
         self.create_graph()
